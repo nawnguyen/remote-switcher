@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  final isDark = sharedPreferences.getBool('is_Dark') ?? false;
+  final isDark = sharedPreferences.getBool('is_dark') ?? false;
   runApp(MyApp(isDark: isDark));
 }
 
@@ -32,3 +32,4 @@ class MyApp extends StatelessWidget {
         });
   }
 }
+

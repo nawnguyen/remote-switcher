@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:light_switch_app/services/api_service.dart';
 import 'package:provider/provider.dart';
 import '../provider/theme_settings.dart';
+import 'package:dio/dio.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -10,11 +12,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _toggleTheme() {
+  final Dio dio = Dio();
+  final service = APIService();
+
+  Future<void> _toggleTheme() async {
     final settings = Provider.of<ThemeSettings>(context, listen: false);
     settings.toggleTheme();
-  }
 
+    await Future.delayed(const Duration(milliseconds: 1));
+
+    try {
+      if (settings.isDark) {
+        service.toggle('off');
+      } else {
+        service.toggle('on');
+      }
+    } catch (error) {}
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

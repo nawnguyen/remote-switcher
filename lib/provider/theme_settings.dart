@@ -4,8 +4,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ThemeSettings extends ChangeNotifier {
   ThemeData _currentTheme = ThemeData.light();
   ThemeData get currentTheme => _currentTheme;
+  bool get isDark => currentTheme.brightness == Brightness.dark;
 
   ThemeSettings(bool isDark) {
+    _loadTheme(isDark);
+  }
+
+  void _loadTheme(bool isDark) async {
     if (isDark) {
       _currentTheme = ThemeData.dark();
     } else {
@@ -13,7 +18,7 @@ class ThemeSettings extends ChangeNotifier {
     }
   }
 
-  void toggleTheme() async {
+  Future<void> toggleTheme() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     if (_currentTheme == ThemeData.light()) {
       _currentTheme = ThemeData.dark();
@@ -25,3 +30,4 @@ class ThemeSettings extends ChangeNotifier {
     notifyListeners();
   }
 }
+
