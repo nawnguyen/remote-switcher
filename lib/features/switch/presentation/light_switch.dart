@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:light_switch_app/core/widgets/app_bottom_navigation_bar.dart';
 import 'package:light_switch_app/services/api_service.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/theme_settings.dart';
-import 'package:dio/dio.dart';
 
-class LightSwitchScreen extends StatefulWidget {
-  const LightSwitchScreen({Key? key}) : super(key: key);
+class SwitchPage extends StatefulWidget {
+  const SwitchPage({Key? key}) : super(key: key);
 
   @override
-  State<LightSwitchScreen> createState() => _LightSwitchScreenState();
+  State<SwitchPage> createState() => _SwitchPageState();
 }
 
-class _LightSwitchScreenState extends State<LightSwitchScreen> {
-  final Dio dio = Dio();
+class _SwitchPageState extends State<SwitchPage> {
   final service = APIService();
   int currentIndex = 0;
   bool isLightOn = false; // Track the state of the light
@@ -71,10 +68,6 @@ class _LightSwitchScreenState extends State<LightSwitchScreen> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: AppBottomNavigationBar(
-        index: currentIndex,
-        onTap: (int) {},
       ),
     );
   }
