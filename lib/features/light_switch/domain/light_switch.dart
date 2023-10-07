@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:light_switch_app/core/widgets/app_bottom_navigation_bar.dart';
 import 'package:light_switch_app/services/api_service.dart';
 import 'package:provider/provider.dart';
-import '../provider/theme_settings.dart';
+import '../../../provider/theme_settings.dart';
 import 'package:dio/dio.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class LightSwitchScreen extends StatefulWidget {
+  const LightSwitchScreen({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<LightSwitchScreen> createState() => _LightSwitchScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LightSwitchScreenState extends State<LightSwitchScreen> {
   final Dio dio = Dio();
   final service = APIService();
   int currentIndex = 0;
@@ -71,27 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.wb_cloudy),
-            label: 'Weather',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lightbulb_sharp),
-            label: 'Lights',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.timer),
-            label: 'Timer',
-          ),
-        ],
+      bottomNavigationBar: AppBottomNavigationBar(
+        index: currentIndex,
+        onTap: (int) {},
       ),
     );
   }

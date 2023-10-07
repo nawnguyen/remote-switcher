@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:light_switch_app/provider/theme_settings.dart';
-import 'package:light_switch_app/screens/home.dart';
+import 'package:light_switch_app/features/light_switch/domain/light_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: settings.currentTheme,
-            home: const MyHomePage(),
+            home: const LightSwitchScreen(),
           );
         });
   }
