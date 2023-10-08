@@ -31,6 +31,12 @@ class RouterNotifier extends ChangeNotifier {
         builder: (context, state) => const WeatherPage(),
         parentNavigatorKey: _shellNavigatorKey,
       ),
+      GoRoute(
+        name: RouteNames.weatherSettingsNameRoute,
+        path: RouteNames.weatherSettingsRoute,
+        builder: (context, state) => const TimerPage(),
+        parentNavigatorKey: _shellNavigatorKey,
+      ),
     ];
   }
 
