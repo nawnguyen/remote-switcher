@@ -14,14 +14,16 @@ class WeatherPage extends StatelessWidget {
       body: Center(
         child: TextButton(
             onPressed: () {
-              context.goNamed(RouteNames.weatherSettingsNameRoute);
+              context.goNamed(RouteNames.timerNameRoute);
             },
             child: const Text('Timer')),
       ),
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.goNamed(RouteNames.weatherSettingsNameRoute);
+            },
             icon: const Icon(CupertinoIcons.settings),
           ),
         ],

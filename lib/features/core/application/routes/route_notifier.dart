@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:light_switch_app/features/switch/presentation/light_switch.dart';
+import 'package:light_switch_app/features/weather/presentation/weather_settings.dart';
 
 import '../../../switch/presentation/timer_page.dart';
 import '../../../weather/presentation/weather_page.dart';
@@ -34,7 +35,7 @@ class RouterNotifier extends ChangeNotifier {
       GoRoute(
         name: RouteNames.weatherSettingsNameRoute,
         path: RouteNames.weatherSettingsRoute,
-        builder: (context, state) => const TimerPage(),
+        builder: (context, state) => const WeatherSettings(),
         parentNavigatorKey: _shellNavigatorKey,
       ),
     ];
