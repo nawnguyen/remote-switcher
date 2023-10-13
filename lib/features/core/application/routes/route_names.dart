@@ -10,4 +10,7 @@ class RouteNames {
 
   static const weatherSettingsRoute = '/weatherSettings';
   static const weatherSettingsNameRoute = 'weatherSettings';
+
+  static const timerSettingsRoute = '/timerSettings';
+  static const timerSettingsNameRoute = 'timerSettings';
 }

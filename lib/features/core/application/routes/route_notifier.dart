@@ -4,6 +4,7 @@ import 'package:light_switch_app/features/switch/presentation/light_switch.dart'
 import 'package:light_switch_app/features/weather/presentation/weather_settings.dart';
 
 import '../../../switch/presentation/timer_page.dart';
+import '../../../switch/presentation/timer_settings.dart';
 import '../../../weather/presentation/weather_page.dart';
 import '../../presentation/widgets/bottom_navigator.dart';
 import 'route_names.dart';
@@ -36,6 +37,12 @@ class RouterNotifier extends ChangeNotifier {
         name: RouteNames.weatherSettingsNameRoute,
         path: RouteNames.weatherSettingsRoute,
         builder: (context, state) => const WeatherSettings(),
+        parentNavigatorKey: _shellNavigatorKey,
+      ),
+      GoRoute(
+        name: RouteNames.timerSettingsNameRoute,
+        path: RouteNames.timerSettingsRoute,
+        builder: (context, state) => const TimerSettings(),
         parentNavigatorKey: _shellNavigatorKey,
       ),
     ];
