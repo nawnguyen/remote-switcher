@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
 
 class TimerPage extends StatefulWidget {
-  const TimerPage({
-    Key? key,
-  }) : super(key: key);
+  const TimerPage({Key? key}) : super(key: key);
 
   @override
   TimerPageState createState() => TimerPageState();
 }
 
 class TimerPageState extends State<TimerPage> {
-  String timeString = '';
+  late int gio;
+  late int phut;
+  late int giay;
 
   @override
   void initState() {
     super.initState();
-    updateClock();
+    updateTime();
   }
 
-  void updateClock() {
+  void updateTime() {
+    DateTime now = DateTime.now();
     setState(() {
-      DateTime now = DateTime.now();
-      timeString = '${now.hour}:${now.minute}:${now.second}';
+      gio = now.hour;
+      phut = now.minute;
+      giay = now.second;
     });
-    Future.delayed(const Duration(seconds: 1), updateClock);
+    Future.delayed(const Duration(seconds: 1), updateTime);
   }
 
   @override
@@ -31,7 +33,7 @@ class TimerPageState extends State<TimerPage> {
     return Scaffold(
       body: Center(
         child: Text(
-          timeString,
+          '$gio:$phut:$giay',
           style: const TextStyle(fontSize: 48),
         ),
       ),
