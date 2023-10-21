@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:light_switch_app/features/core/application/routes/route_names.dart';
 import 'package:light_switch_app/services/api_service.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/theme_settings.dart';
@@ -64,10 +66,16 @@ class _SwitchPageState extends State<SwitchPage> {
             const SizedBox(height: 16.0),
             Text(
               isLightOn ? 'Light is ON' : 'Light is OFF',
-              style: TextStyle(fontSize: 18.0),
+              style: const TextStyle(fontSize: 18.0),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.goNamed(RouteNames.timerSettingsNameRoute);
+        },
+        child: const Icon(Icons.timer),
       ),
     );
   }
