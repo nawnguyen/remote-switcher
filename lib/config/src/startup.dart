@@ -18,6 +18,7 @@ abstract class Startup {
       BuildConfig.init(flavor: const String.fromEnvironment('flavor'));
 
       Themes.initUiOverlayStyle();
+      await HiveDatabase.init();
 
       final app = await onCreate();
 
