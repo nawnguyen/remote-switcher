@@ -18,6 +18,10 @@ class BottomNavigationContainer extends StatefulWidget {
       icon: Icon(Icons.timer),
       label: 'Timer',
     ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.settings_rounded),
+      label: 'Settings',
+    ),
   ];
 
   const BottomNavigationContainer({
@@ -52,6 +56,8 @@ class _BottomNavigationContainerState extends State<BottomNavigationContainer> {
         return RouteNames.lightNameRoute;
       case 2:
         return RouteNames.timerNameRoute;
+      case 3:
+        return RouteNames.settingsNameRoute;
     }
     return RouteNames.weatherNameRoute;
   }
@@ -64,6 +70,8 @@ class _BottomNavigationContainerState extends State<BottomNavigationContainer> {
         return 1;
       case RouteNames.timerRoute:
         return 2;
+      case RouteNames.settingsRoute:
+        return 3;
     }
     return 0;
   }

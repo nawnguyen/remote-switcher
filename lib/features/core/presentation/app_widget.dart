@@ -37,6 +37,7 @@ class AppWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(initializationProvider, (_, __) {});
     final router = ref.watch(routerProvider);
+    final theme = ref.watch(themeProvider);
 
     return MaterialApp.router(
       routeInformationProvider: router.routeInformationProvider,
@@ -44,7 +45,7 @@ class AppWidget extends HookConsumerWidget {
       routerDelegate: router.routerDelegate,
       theme: Themes.lightTheme(context),
       darkTheme: Themes.darkTheme(context),
-      themeMode: ThemeMode.light,
+      themeMode: theme,
       debugShowCheckedModeBanner: false,
     );
   }
