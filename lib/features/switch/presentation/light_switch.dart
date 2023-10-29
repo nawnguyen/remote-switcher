@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:light_switch_app/features/core/application/routes/route_names.dart';
 
-class SwitchPage extends StatefulWidget {
-  const SwitchPage({Key? key}) : super(key: key);
-
-  @override
-  State<SwitchPage> createState() => _SwitchPageState();
-}
+import '../shared/providers.dart';
 
 class SwitchModel {
   final String name;
@@ -14,14 +12,18 @@ class SwitchModel {
   SwitchModel({required this.name, required this.state});
 }
 
-class _SwitchPageState extends State<SwitchPage> {
-  List<SwitchModel> switches = [
-    SwitchModel(name: 'on', state: true),
-    SwitchModel(name: 'off', state: false),
-  ];
+class SwitchPage extends HookConsumerWidget {
+  const SwitchPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final model = ref.watch(toggleNotifierProvider);
+
+    List<SwitchModel> switches = [
+      SwitchModel(name: 'on', state: true),
+      SwitchModel(name: 'off', state: false),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black38,
@@ -69,8 +71,47 @@ class _SwitchPageState extends State<SwitchPage> {
           },
         ),
       ),
+    ) ?? Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipOval(
+              child: Material(
+                color: model.state ? Colors.yellow : Colors.grey, // Light on/off color
+                child: InkWell(
+                  onTap: () {
+                    ref.read(toggleNotifierProvider.notifier).toggle(model.copyWith(state: !model.state));
+                  },
+                  child: const SizedBox(
+                    width: 100.0, // Adjust the width and height as needed
+                    height: 100.0,
+                    child: Icon(
+                      Icons.lightbulb_sharp,
+                      size: 60.0, // Adjust the icon size as needed
+                      color: Colors.black, // Icon color
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            Text(
+              model.state ? 'Light is ON' : 'Light is OFF',
+              style: const TextStyle(fontSize: 18.0),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.goNamed(RouteNames.timerSettingsNameRoute);
+        },
+        child: const Icon(Icons.timer),
+      ),
     );
   }
+
 
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(

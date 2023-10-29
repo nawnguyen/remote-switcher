@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:light_switch_app/features/switch/presentation/light_switch.dart';
 import 'package:light_switch_app/features/weather/presentation/weather_settings.dart';
 
+import '../../../settings/presentation/settings_page.dart';
 import '../../../switch/presentation/timer_page.dart';
 import '../../../switch/presentation/timer_settings.dart';
 import '../../../weather/presentation/weather_page.dart';
@@ -43,6 +44,12 @@ class RouterNotifier extends ChangeNotifier {
         name: RouteNames.timerSettingsNameRoute,
         path: RouteNames.timerSettingsRoute,
         builder: (context, state) => const TimerSettings(),
+        parentNavigatorKey: _shellNavigatorKey,
+      ),
+      GoRoute(
+        name: RouteNames.settingsNameRoute,
+        path: RouteNames.settingsRoute,
+        builder: (context, state) => const SettingsPage(),
         parentNavigatorKey: _shellNavigatorKey,
       ),
     ];

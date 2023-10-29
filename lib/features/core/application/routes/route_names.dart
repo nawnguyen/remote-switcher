@@ -13,4 +13,7 @@ class RouteNames {
 
   static const timerSettingsRoute = '/timerSettings';
   static const timerSettingsNameRoute = 'timerSettings';
+
+  static const settingsRoute = '/settings';
+  static const settingsNameRoute = 'settings';
 }

@@ -8,33 +8,13 @@ class TimerPage extends StatefulWidget {
 }
 
 class TimerPageState extends State<TimerPage> {
-  late int gio;
-  late int phut;
-  late int giay;
-
-  @override
-  void initState() {
-    super.initState();
-    updateTime();
-  }
-
-  void updateTime() {
-    DateTime now = DateTime.now();
-    setState(() {
-      gio = now.hour;
-      phut = now.minute;
-      giay = now.second;
-    });
-    Future.delayed(const Duration(seconds: 1), updateTime);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text(
-          '$gio:$phut:$giay',
-          style: const TextStyle(fontSize: 48),
+          'Ok',
+          style: TextStyle(fontSize: 48),
         ),
       ),
     );
