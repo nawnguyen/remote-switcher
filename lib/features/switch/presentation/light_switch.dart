@@ -103,7 +103,7 @@ class _SwitchPageState extends State<SwitchPage> {
               ElevatedButton(
                 onPressed: () {
                   if (switches.isEmpty) {
-                    // switches.add("New Name");
+                    switches.add("New Name" as SwitchModel);
                   }
                   Navigator.pop(context);
                 },
@@ -129,14 +129,26 @@ class _SwitchPageState extends State<SwitchPage> {
               topRight: Radius.circular(20),
             ),
           ),
-          child: ListTile(
-            title: Text('Delete'),
-            onTap: () {
-              setState(() {
-                switches.removeAt(index);
-              });
-              Navigator.pop(context);
-            },
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              ListTile(
+                title: const Text('Delete'),
+                onTap: () {
+                  setState(() {
+                    switches.removeAt(index);
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Edit'),
+                onTap: () {
+                  // Add your edit functionality here
+                  Navigator.pop(context);
+                },
+              ),
+            ],
           ),
         );
       },
