@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:light_switch_app/features/switch/domain/constants/hive_boxes_keys.dart';
 
 class ThemeNotifier extends StateNotifier<ThemeMode> {
-  late final Box<bool> themeBox;
+  final Box<bool> themeBox;
 
   ThemeNotifier(this.themeBox) : super(ThemeMode.light) {
     final darkMode = themeBox.get(HiveBoxKeys.theme, defaultValue: false)!;
