@@ -20,6 +20,7 @@ ToggleSwitchModel _$ToggleSwitchModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ToggleSwitchModel {
+  int get switchId => throw _privateConstructorUsedError;
   bool get state => throw _privateConstructorUsedError;
   String get deviceId => throw _privateConstructorUsedError;
 
@@ -35,7 +36,7 @@ abstract class $ToggleSwitchModelCopyWith<$Res> {
           ToggleSwitchModel value, $Res Function(ToggleSwitchModel) then) =
       _$ToggleSwitchModelCopyWithImpl<$Res, ToggleSwitchModel>;
   @useResult
-  $Res call({bool state, String deviceId});
+  $Res call({int switchId, bool state, String deviceId});
 }
 
 /// @nodoc
@@ -51,10 +52,15 @@ class _$ToggleSwitchModelCopyWithImpl<$Res, $Val extends ToggleSwitchModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? switchId = null,
     Object? state = null,
     Object? deviceId = null,
   }) {
     return _then(_value.copyWith(
+      switchId: null == switchId
+          ? _value.switchId
+          : switchId // ignore: cast_nullable_to_non_nullable
+              as int,
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -75,7 +81,7 @@ abstract class _$$ToggleSwitchModelImplCopyWith<$Res>
       __$$ToggleSwitchModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool state, String deviceId});
+  $Res call({int switchId, bool state, String deviceId});
 }
 
 /// @nodoc
@@ -89,10 +95,15 @@ class __$$ToggleSwitchModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? switchId = null,
     Object? state = null,
     Object? deviceId = null,
   }) {
     return _then(_$ToggleSwitchModelImpl(
+      switchId: null == switchId
+          ? _value.switchId
+          : switchId // ignore: cast_nullable_to_non_nullable
+              as int,
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -110,11 +121,14 @@ class __$$ToggleSwitchModelImplCopyWithImpl<$Res>
 class _$ToggleSwitchModelImpl
     with DiagnosticableTreeMixin
     implements _ToggleSwitchModel {
-  const _$ToggleSwitchModelImpl({required this.state, required this.deviceId});
+  const _$ToggleSwitchModelImpl(
+      {required this.switchId, required this.state, required this.deviceId});
 
   factory _$ToggleSwitchModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ToggleSwitchModelImplFromJson(json);
 
+  @override
+  final int switchId;
   @override
   final bool state;
   @override
@@ -122,7 +136,7 @@ class _$ToggleSwitchModelImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ToggleSwitchModel(state: $state, deviceId: $deviceId)';
+    return 'ToggleSwitchModel(switchId: $switchId, state: $state, deviceId: $deviceId)';
   }
 
   @override
@@ -130,6 +144,7 @@ class _$ToggleSwitchModelImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ToggleSwitchModel'))
+      ..add(DiagnosticsProperty('switchId', switchId))
       ..add(DiagnosticsProperty('state', state))
       ..add(DiagnosticsProperty('deviceId', deviceId));
   }
@@ -139,6 +154,8 @@ class _$ToggleSwitchModelImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToggleSwitchModelImpl &&
+            (identical(other.switchId, switchId) ||
+                other.switchId == switchId) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.deviceId, deviceId) ||
                 other.deviceId == deviceId));
@@ -146,7 +163,7 @@ class _$ToggleSwitchModelImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, state, deviceId);
+  int get hashCode => Object.hash(runtimeType, switchId, state, deviceId);
 
   @JsonKey(ignore: true)
   @override
@@ -165,12 +182,15 @@ class _$ToggleSwitchModelImpl
 
 abstract class _ToggleSwitchModel implements ToggleSwitchModel {
   const factory _ToggleSwitchModel(
-      {required final bool state,
+      {required final int switchId,
+      required final bool state,
       required final String deviceId}) = _$ToggleSwitchModelImpl;
 
   factory _ToggleSwitchModel.fromJson(Map<String, dynamic> json) =
       _$ToggleSwitchModelImpl.fromJson;
 
+  @override
+  int get switchId;
   @override
   bool get state;
   @override

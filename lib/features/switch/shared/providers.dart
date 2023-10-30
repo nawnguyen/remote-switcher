@@ -6,6 +6,7 @@ import 'package:light_switch_app/features/switch/domain/entities/switch_entity.d
 import 'package:light_switch_app/features/switch/domain/toggle_switch_model.dart';
 import 'package:light_switch_app/features/switch/infrastructure/providers/remote_service_provider_impl.dart';
 
+import '../application/switches_notifier.dart';
 import '../application/toggle_notifier.dart';
 import '../infrastructure/providers/remote_service_provider.dart';
 import '../infrastructure/providers/switch_local_storage_provider.dart';
@@ -27,4 +28,8 @@ final switchesBoxProvider = Provider<Box<SwitchEntity>>(
 );
 final switchLocalStorageProvider = Provider<SwitchLocalStorageProvider>(
   (ref) => SwitchLocalStorageProviderImpl(ref.watch(switchesBoxProvider)),
+);
+
+final switchesNotifier = StateNotifierProvider<SwitchesNotifier, List<SwitchEntity>>(
+  (ref) => SwitchesNotifier(ref.watch(switchRepository)),
 );
