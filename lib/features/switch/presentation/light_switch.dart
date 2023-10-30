@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:light_switch_app/features/core/application/routes/route_names.dart';
+import 'package:light_switch_app/features/switch/domain/models/add_switch_request.dart';
 
+import '../domain/toggle_switch_model.dart';
 import '../shared/providers.dart';
-
-class SwitchModel {
-  final String name;
-  bool state;
-
-  SwitchModel({required this.name, required this.state});
-}
 
 class SwitchPage extends HookConsumerWidget {
   const SwitchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final model = ref.watch(toggleNotifierProvider);
-
-    List<SwitchModel> switches = [
-      SwitchModel(name: 'on', state: true),
-      SwitchModel(name: 'off', state: false),
-    ];
+    final switches = ref.watch(switchesNotifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -31,9 +19,9 @@ class SwitchPage extends HookConsumerWidget {
           IconButton(
             icon: const Icon(Icons.add_circle, size: 40),
             onPressed: () {
-              _showBottomSheet(context);
+              _showBottomSheet(context, ref);
             },
-          )
+          ),
         ],
       ),
       body: Padding(
@@ -46,14 +34,15 @@ class SwitchPage extends HookConsumerWidget {
           ),
           itemCount: switches.length,
           itemBuilder: (BuildContext context, int index) {
+            final switchItem = switches[index];
+
             return GestureDetector(
               onLongPress: () {
                 _showDeleteBottomSheet(context, index);
               },
               onTap: () {
-                setState(() {
-                  switches[index].state = !switches[index].state;
-                });
+                final model = ToggleSwitchModel(switchId: switchItem.id, state: !switchItem.state, deviceId: switchItem.deviceId);
+                ref.read(switchesNotifier.notifier).toggle(model);
               },
               child: Container(
                 padding: const EdgeInsets.all(8),
@@ -71,49 +60,10 @@ class SwitchPage extends HookConsumerWidget {
           },
         ),
       ),
-    ) ?? Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipOval(
-              child: Material(
-                color: model.state ? Colors.yellow : Colors.grey, // Light on/off color
-                child: InkWell(
-                  onTap: () {
-                    ref.read(toggleNotifierProvider.notifier).toggle(model.copyWith(state: !model.state));
-                  },
-                  child: const SizedBox(
-                    width: 100.0, // Adjust the width and height as needed
-                    height: 100.0,
-                    child: Icon(
-                      Icons.lightbulb_sharp,
-                      size: 60.0, // Adjust the icon size as needed
-                      color: Colors.black, // Icon color
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Text(
-              model.state ? 'Light is ON' : 'Light is OFF',
-              style: const TextStyle(fontSize: 18.0),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.goNamed(RouteNames.timerSettingsNameRoute);
-        },
-        child: const Icon(Icons.timer),
-      ),
     );
   }
 
-
-  void _showBottomSheet(BuildContext context) {
+  void _showBottomSheet(BuildContext context, WidgetRef ref) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -133,19 +83,17 @@ class SwitchPage extends HookConsumerWidget {
                 title: TextField(
                   decoration: const InputDecoration(labelText: 'Enter Name'),
                   onSubmitted: (value) {
-                    setState(() {
-                      final switchModel = SwitchModel(name: value, state: false);
-                      switches.add(switchModel);
-                    });
+                    ref.read(switchesNotifier.notifier).add(AddSwitchRequestModel(name: value, deviceId: ''));
                     Navigator.pop(context);
                   },
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (switches.isEmpty) {
-                    switches.add("New Name" as SwitchModel);
-                  }
+                  // if (switches.isEmpty) {
+                  //   switches.add("New Name" as SwitchModel);
+                  // }
+
                   Navigator.pop(context);
                 },
                 child: const Text('Save'),
@@ -176,9 +124,9 @@ class SwitchPage extends HookConsumerWidget {
               ListTile(
                 title: const Text('Delete'),
                 onTap: () {
-                  setState(() {
-                    switches.removeAt(index);
-                  });
+                  // setState(() {
+                  //   switches.removeAt(index);
+                  // });
                   Navigator.pop(context);
                 },
               ),

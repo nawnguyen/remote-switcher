@@ -7,6 +7,7 @@ part 'toggle_switch_model.g.dart';
 @freezed
 class ToggleSwitchModel with _$ToggleSwitchModel {
   const factory ToggleSwitchModel({
+    required int switchId,
     required bool state,
     required String deviceId,
   }) = _ToggleSwitchModel;

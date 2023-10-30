@@ -7,7 +7,7 @@ class ToggleNotifier extends StateNotifier<ToggleSwitchModel> {
   final SwitchRepository _switchRepository;
 
   ToggleNotifier(this._switchRepository)
-      : super(const ToggleSwitchModel(state: false, deviceId: 'non-id'));
+      : super(const ToggleSwitchModel(switchId: 0, state: false, deviceId: 'non-id'));
 
   Future<void> toggle(ToggleSwitchModel model) async {
     final response = await _switchRepository.toggle(model);
