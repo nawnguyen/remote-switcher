@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:light_switch_app/features/group/presentation/groups_page.dart';
 import 'package:light_switch_app/features/switch/presentation/light_switch.dart';
 import 'package:light_switch_app/features/weather/presentation/weather_settings.dart';
 
@@ -50,6 +51,12 @@ class RouterNotifier extends ChangeNotifier {
         name: RouteNames.settingsNameRoute,
         path: RouteNames.settingsRoute,
         builder: (context, state) => const SettingsPage(),
+        parentNavigatorKey: _shellNavigatorKey,
+      ),
+      GoRoute(
+        name: RouteNames.groupsPageNameRoute,
+        path: RouteNames.groupsRoute,
+        builder: (context, state) => const GroupsPage(),
         parentNavigatorKey: _shellNavigatorKey,
       ),
     ];

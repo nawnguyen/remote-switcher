@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:light_switch_app/features/core/application/routes/route_names.dart';
 import '../domain/weather_model.dart';
 
 class WeatherPage extends StatelessWidget {
@@ -14,51 +16,66 @@ class WeatherPage extends StatelessWidget {
       child: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/image1.png'),
-              fit: BoxFit.cover,
-            ),
+            color: Color(0xFF1F2439),
           ),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '${weather.temperature}°C',
-                        style: const TextStyle(
-                            fontSize: 90, fontWeight: FontWeight.bold),
+                const SizedBox(height: 30),
+                GestureDetector(
+                  onTap: () {
+                    context.goNamed(RouteNames.groupsPageNameRoute);
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white12,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25),
                       ),
-                    ],
+                    ),
+                    height: 150,
+                    width: 395,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.water_drop,
+                          size: 50,
+                          color: Colors.blue,
+                        ),
+                        Text(
+                          '${weather.humidity}%',
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                        Text(
+                          '${weather.temperature}°C',
+                          style: const TextStyle(
+                            fontSize: 30,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                const SizedBox(height: 370),
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      )),
-                  height: 120,
-                  width: 350,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.water_drop,
-                        size: 50,
-                        color: Colors.blue,
+                const SizedBox(height: 5),
+                GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  children: List.generate(2, (index) {
+                    return GestureDetector(
+                      onTap: () {
+                        context.goNamed(RouteNames.groupsPageNameRoute);
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF2E334A),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
-                      Text(
-                        '${weather.humidity}%',
-                        style: const TextStyle(fontSize: 30),
-                      ),
-                    ],
-                  ),
+                    );
+                  }),
                 ),
               ],
             ),

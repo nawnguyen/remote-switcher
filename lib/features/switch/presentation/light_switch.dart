@@ -96,7 +96,7 @@ class SwitchPage extends HookConsumerWidget {
 
                   Navigator.pop(context);
                 },
-                child: const Text('Save'),
+                child:  const Text('Save', selectionColor: Colors.black54),
               ),
             ],
           ),

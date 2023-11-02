@@ -16,4 +16,7 @@ class RouteNames {
 
   static const settingsRoute = '/settings';
   static const settingsNameRoute = 'settings';
+
+  static const groupsRoute = '/groups';
+  static const groupsPageNameRoute = 'groupsPageNameRoute';
 }
