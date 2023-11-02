@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class GroupsPage extends StatelessWidget {
-  const GroupsPage({Key? key});
+  GroupsPage({Key? key});
+
+  final List<GroupTileModel> listGroup = [
+    const GroupTileModel(title: 'Thai Nguyen', deviceCount: 15),
+    const GroupTileModel(title: 'Nha Trang', deviceCount: 6),
+    const GroupTileModel(title: 'Da Nang', deviceCount: 6),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    List<String> dataList = ['Row 1', 'Row 2']; // Sample data for the list
-
+    // listGroup.add(const GroupTileModel(title: 'a', deviceCount: 71));
     return Scaffold(
       backgroundColor: const Color(0xFF1F2439),
       appBar: AppBar(
@@ -111,21 +116,21 @@ class GroupsPage extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: 1,
+        itemCount: listGroup.length,
         itemBuilder: (context, index) {
-          return const Column(
-            children: [
-              GroupTile(title: 'Thai Nguyen', deviceCount: 10),
-              GroupTile(title: 'Nha Trang', deviceCount: 6),
-              GroupTile(title: 'Da Nang', deviceCount: 3),
-              GroupTile(title: 'Phu Quoc', deviceCount: 15),
-            ],
-          );
+          return GroupTile(title: listGroup[index].title,deviceCount: listGroup[index].deviceCount);
         },
       ),
     );
   }
 }
+
+class GroupTileModel {
+  const GroupTileModel({required this.title, required this.deviceCount});
+  final String title;
+  final int deviceCount;
+}
+
 class GroupTile extends StatelessWidget {
   const GroupTile({required this.title, required this.deviceCount});
   final String title;

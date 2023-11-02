@@ -56,7 +56,7 @@ class RouterNotifier extends ChangeNotifier {
       GoRoute(
         name: RouteNames.groupsPageNameRoute,
         path: RouteNames.groupsRoute,
-        builder: (context, state) => const GroupsPage(),
+        builder: (context, state) => GroupsPage(),
         parentNavigatorKey: _shellNavigatorKey,
       ),
     ];
