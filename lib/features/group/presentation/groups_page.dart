@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -55,91 +57,95 @@ class GroupsPage extends StatelessWidget {
                   showModalBottomSheet(
                     context: context,
                       isScrollControlled:true,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                    ),
-                    backgroundColor: const Color(0xFF2E334A),
+                    backgroundColor: Colors.transparent,
                     builder: (BuildContext context) {
-                      return Container(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(18, 18, 18, 42),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Center(
-                                child: Text(
-                                  'Add group',
-                                  style: GoogleFonts.nunito(
-                                    textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: 'Nutito',
-                                      letterSpacing: 0.1,
+                      return BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Color(0xFF2E334A),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(18, 18, 18, 42),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                Center(
+                                  child: Text(
+                                    'Add group',
+                                    style: GoogleFonts.nunito(
+                                      textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: 'Nutito',
+                                        letterSpacing: 0.1,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 38),
-                              Container(
-                                height: 64,
-                                padding: const EdgeInsets.all(1),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(32),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [ Color(0xFF00B4F0), Color(0xFF356FDE)],
-                                  ),
-                                ),
-                                child: Container(
-                                  alignment: Alignment.center,
+                                const SizedBox(height: 38),
+                                Container(
+                                  height: 64,
+                                  padding: const EdgeInsets.all(1),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: const Color(0xFF1F2439),
+                                    borderRadius: BorderRadius.circular(32),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [ Color(0xFF00B4F0), Color(0xFF356FDE)],
+                                    ),
                                   ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 22),
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: 'Name',
-                                        hintStyle: TextStyle(
-                                          color: Color(0xF9293A4),
-                                          fontSize: 24,
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: const Color(0xFF1F2439),
+                                    ),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 22),
+                                      child: TextField(
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: 'Name',
+                                          hintStyle: TextStyle(
+                                            color: Color(0xF9293A4),
+                                            fontSize: 24,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 42),
-                              Container(
-                                height: 64,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(32),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    colors: [
-                                      Color(0xFF356FDE),
-                                      Color(0xFF00B4F0),
-                                    ],
+                                const SizedBox(height: 42),
+                                Container(
+                                  height: 64,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(32),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                      colors: [
+                                        Color(0xFF356FDE),
+                                        Color(0xFF00B4F0),
+                                      ],
+                                    ),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      'Save',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 24),
+                                    ),
                                   ),
                                 ),
-                                child: const Center(
-                                  child: Text(
-                                    'Save',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 24),
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );
